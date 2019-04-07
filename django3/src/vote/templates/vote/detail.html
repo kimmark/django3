@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>detail.html</title>
+</head>
+<body>
+
+{# q:Question 객체 1개 c:q와 연결된 Choice 객체 리스트 #}
+<h2>{{q.title}}</h2>
+
+{# 하나의 뷰함수에서 get요청과 post요청을 구분하기 위해서 post방식으로 입력값 전달#}
+<form action='' method='post'>
+	{% csrf_token %}
+	{# csrf_token: CSFR공격을 방지하기 위한 웹서버가 발급하는 일회용 키#}
+	{% for ch in c %}
+		<input type='radio' name='a' value='{{ch.id}}'>
+		{# 선택하게 되면 서버로 a=아이디값이 저장되어 보내진다 #}
+		<label>{{ch.name}}</label>
+		<br>
+		
+	{% endfor %}
+	<input type='submit' value="투표하기">
+
+</form>
+
+
+
+
+</body>
+</html>

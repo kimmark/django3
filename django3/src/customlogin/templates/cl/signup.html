@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{# form: SignupForm 객체/error: 사용자입력이 잘못됬을 때 에러코드 #}
+<h2>회원가입 페이지</h2>
+{% if error %}
+	<p style="color: red;">{{error}}</p>
+{% endif %}
+
+<form action='' method='post'> 
+	{% csrf_token %}
+	<table>
+	{{form.as_table}}
+	{# as_table은 함수지만 HTML에서는 매개변수를 작성하지 않는다 #}
+	</table>
+	<input type='submit' value='회원가입'>
+	
+</form>
+
+<a href="{% url 'vote:index' %}">메인으로 돌아가기</a>
+{% endblock %}
